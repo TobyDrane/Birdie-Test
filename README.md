@@ -7,4 +7,6 @@ Toby Drane [tobydrane@gmail.com]
 * The backend should be relatively well tested
 * There could be more detail within the frontend however to create the whole project within a day I think the current spike is sufficient
 
-![Main Screen](https://imgur.com/moWWgjA)
+
+Can change what recipient you want to view the information for by the dropdown. All requests should be asynchronous using redux-saga and page should present loading information whilst requests are pending.
+![Main Screen](https://i.imgur.com/moWWgjA.png)
