@@ -10,3 +10,6 @@ Toby Drane [tobydrane@gmail.com]
 
 Can change what recipient you want to view the information for by the dropdown. All requests should be asynchronous using redux-saga and page should present loading information whilst requests are pending.
 ![Main Screen](https://i.imgur.com/moWWgjA.png)
+
+![Calendar](https://i.imgur.com/xTf4OFi.png)
+![Event Type Breakdown](https://i.imgur.com/rJISxV1.png)
