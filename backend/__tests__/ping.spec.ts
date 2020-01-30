@@ -1,5 +1,6 @@
-import app from '../src/application'
+import 'jest';
 import * as request from 'supertest';
+import app from '../src/application';
 
 describe('We are grateful to you for doing this it.', () => {
   it('thanks you', async () => {

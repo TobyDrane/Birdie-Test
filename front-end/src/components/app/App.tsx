@@ -3,19 +3,19 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { RootState } from '@App/store/reducers';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { fetchAllCareRecipients } from '@App/store/actions/index';
 
-import Title from '@App/components/Title';
-import Logo from '@App/components/Logo';
-import SubTitle from '@App/components/SubTitle';
-
-const LogoUrl = require('../../assets/images/logo-birdie.svg');
+import Navbar from '@App/components/navbar/Navbar';
+import Layout from '@App/components/layout/Layout';
 
 interface AppProps {
-
+  fetchCareRecipients: () => void;
+  state: {
+    events: { loading: boolean };
+  };
 }
 
 interface AppState {
-
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -32,7 +32,6 @@ const AppContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
@@ -40,24 +39,41 @@ const AppContainer = styled.div`
 class App extends React.Component<AppProps, AppState> {
   public constructor(props: AppProps) {
     super(props);
+    /* tslint:disable:no-console */
+    console.log(props);
+  }
+
+  componentDidMount() {
+    const { fetchCareRecipients } = this.props;
+    fetchCareRecipients();
   }
 
   public render() {
-    return (
-      <>
-        <GlobalStyle />
-        <AppContainer>
-          <Logo src={LogoUrl} />
-          <Title>Welcome to the birdie test</Title>
-          <SubTitle>Best of luck!</SubTitle>
-        </AppContainer>
-      </>
-    );
+    const { state } = this.props;
+    const { events } = state;
+    if (!events.loading) {
+      return (
+        <>
+          <GlobalStyle />
+          <AppContainer>
+            <Navbar />
+            <Layout />
+          </AppContainer>
+        </>
+      );
+    }
+    return (<p>loading...</p>);
   }
 }
 
-const mapStateToProps = (state: RootState, ownProps: object) => {};
+const mapStateToProps = (state: RootState, ownProps: object) => {
+  return {
+    state,
+  };
+};
 
-const mapDispatchToProps = (dispatch: Dispatch<RootState>) => {};
+const mapDispatchToProps = (dispatch: Dispatch<RootState>) => ({
+  fetchCareRecipients: () => dispatch(fetchAllCareRecipients())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

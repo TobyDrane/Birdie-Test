@@ -1,9 +1,12 @@
-import * as express from "express";
+import { Request, Response } from 'express';
 
-export const pingController = express.Router();
+// Ping Controller
+class PingController {
+  static ping = async (_: Request, res : Response) => {
+    res.status(200).json({
+      greetings: 'Thank you for spending some time on this test. All the best 🙌'
+    });
+  };
+}
 
-pingController.get('/hello', (_, res) => {
-  res.status(200).json({
-    greetings: 'Thank you for spending some time on this test. All the best 🙌'
-  });
-});
+export default PingController;
